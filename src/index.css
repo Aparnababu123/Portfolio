@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+html,body{
+  margin:0;
+  padding:0;
+  font-family:"Space Grotesk",sans-serif;
+  background:#0a0a0a;
+  color:#f3f4f6;
+}
+
+@layer utilities{/*It's a way to tell Tailwind:
+  “Hey Tailwind, I want to add my own utility classes (like .animate-blink, .my-shadow, etc.), and 
+  I want them to behave just like built-in Tailwind classes.”*/
+  @keyframes blink {
+    0%,100%{
+      opacity:1;/* fully visible */
+    }
+   50%{
+      opacity:0;/* fully Invisible */
+    }
+  }
+  .animate-blink{
+    animation:blink 0.8s step-end infinite;
+  }
+
+
+
+
+
+ /*This moves a bar from left to right, starting way off-screen left (-100%) and ending far right (250%).*/
+  @keyframes loading {
+    0%{
+      transform:translateX(-100%)
+     
+    }
+    100%{
+      transform:translateX(250%);
+    }
+  }
+/*We  need to attach this animation to an element using a class.*/
+  .animate-loading-bar{
+    animation:loading 0.8s ease infinite;/*loading is the animation we created*/
+  }
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+
+}
+.reveal.visible{
+  opacity:1;
+  transform: translateY( 0);
+}
